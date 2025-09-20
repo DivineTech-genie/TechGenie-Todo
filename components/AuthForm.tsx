@@ -29,7 +29,7 @@ import {
   signUpSchema,
 } from "@/data/formValidation";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from "@/app/supabase_actions/route";
+import { signIn, signUp } from "@/actions/route";
 import { useUsersDetails } from "@/context/usersDetails";
 
 const AuthForm = ({

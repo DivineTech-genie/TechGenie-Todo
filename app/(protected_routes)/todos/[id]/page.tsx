@@ -1,5 +1,4 @@
-import React from "react";
-import Todos from "./todos";
+import Todos from "@/components/todos";
 
 const TodosPage = () => {
   return (

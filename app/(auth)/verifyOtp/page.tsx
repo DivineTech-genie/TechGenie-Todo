@@ -1,5 +1,5 @@
 import { createClient } from "@/supabase/client";
-import { OtpField } from "./OtpField";
+import { OtpField } from "../../../components/OtpField";
 import { toast } from "sonner";
 
 export const otpVerification = async (

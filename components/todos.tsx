@@ -1,16 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fetchAvatars, fetchTodos } from "../../../supabase_actions/fetchData";
 import { Todo } from "@/data/types";
-import { insertTodos } from "../../../supabase_actions/insertData";
-import { deleteTodoFromDB } from "../../../supabase_actions/deleteData";
-import {
-  updateCompletedTodoInDB,
-  updateTodoInDB,
-} from "../../../supabase_actions/updateData";
-import ProfileCom from "@/components/ProfileCom";
 import Link from "next/link";
 import { createClient } from "@/supabase/client";
+import { fetchAvatars, fetchTodos } from "@/actions/fetchData";
+import { deleteTodoFromDB } from "@/actions/deleteData";
+import { insertTodos } from "@/actions/insertData";
+import { updateCompletedTodoInDB, updateTodoInDB } from "@/actions/updateData";
+import ProfileCom from "./ProfileCom";
 
 const Todos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);

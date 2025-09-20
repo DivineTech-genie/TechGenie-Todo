@@ -18,7 +18,7 @@ import { FormSchema, OtpValue } from "@/data/formValidation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { otpVerification } from "./page";
+import { otpVerification } from "../app/(auth)/verifyOtp/page";
 import { useUsersDetails } from "@/context/usersDetails";
 import { useRouter } from "next/navigation";
 

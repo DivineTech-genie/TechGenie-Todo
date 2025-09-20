@@ -1,7 +1,7 @@
 "use client";
 
-import { fetchAvatars } from "@/app/supabase_actions/fetchData";
-import { insertAvatar } from "@/app/supabase_actions/insertData";
+import { fetchAvatars } from "@/actions/fetchData";
+import { insertAvatar } from "@/actions/insertData";
 import ProfileCom from "@/components/ProfileCom";
 import { ChangeEvent, useEffect, useState } from "react";
 import { FiEdit3 } from "react-icons/fi";
