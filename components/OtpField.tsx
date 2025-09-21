@@ -15,12 +15,14 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { FormSchema, OtpValue } from "@/data/formValidation";
+import { createClient } from "@/supabase/client";
+import { toast } from "sonner";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { otpVerification } from "../app/(auth)/verifyOtp/page";
 import { useUsersDetails } from "@/context/usersDetails";
 import { useRouter } from "next/navigation";
+import { confirmOtp } from "@/actions/route";
 
 export const OtpField = () => {
   const form = useForm<OtpValue>({
@@ -33,10 +35,10 @@ export const OtpField = () => {
   const { email, userName } = useUsersDetails();
   const router = useRouter();
 
-  async function onSubmit(data: OtpValue) {
+  async function verifyOtp(data: OtpValue) {
     console.log(email);
 
-    const result = await otpVerification(data.pin, email, userName);
+    const result = await confirmOtp(email, data.pin, userName);
 
     if (result.success && result.userId) {
       router.push(`/todos/${result.userId}`);
@@ -46,7 +48,7 @@ export const OtpField = () => {
   return (
     <div className="flex py-6 justify-center items-center shadow w-full max-w-md mx-auto">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-6">
+        <form onSubmit={form.handleSubmit(verifyOtp)} className=" space-y-6">
           <FormField
             control={form.control}
             name="pin"

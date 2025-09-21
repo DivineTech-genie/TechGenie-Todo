@@ -3,6 +3,7 @@ import { createClient } from "@/supabase/client";
 
 import { toast } from "sonner";
 
+// SignUp users
 export const signUp = async (values: SignUpFormValues) => {
   try {
     const { data, error } = await createClient().auth.signUp({
@@ -41,6 +42,7 @@ export const signUp = async (values: SignUpFormValues) => {
   }
 };
 
+// SignIn users
 export const signIn = async (values: SignInFormValues) => {
   try {
     const {
@@ -69,3 +71,36 @@ export const signIn = async (values: SignInFormValues) => {
     console.error(error);
   }
 };
+
+// Verify Users Otp
+export async function confirmOtp(
+  userEmail: string,
+  otp: string,
+  userName: string
+) {
+  const { error } = await createClient().auth.verifyOtp({
+    email: userEmail,
+    token: otp,
+    type: "signup",
+  });
+
+  if (error) {
+    console.error(error.message);
+    toast.error("OTP verification failed");
+    return { success: false, error };
+  }
+
+  if (!error) {
+    const { data } = await createClient().auth.getUser();
+    await createClient().from("users").insert({
+      user_id: data.user?.id,
+      user_name: userName,
+      email: userEmail,
+    });
+
+    toast.success("Account created successfully!");
+    return { success: true, userId: data.user?.id };
+  }
+
+  return { success: false };
+}
