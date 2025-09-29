@@ -15,8 +15,6 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { FormSchema, OtpValue } from "@/data/formValidation";
-import { createClient } from "@/supabase/client";
-import { toast } from "sonner";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

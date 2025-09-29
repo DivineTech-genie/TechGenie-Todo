@@ -1,7 +1,9 @@
+import HomePage from "@/components/home";
+
 const Home = () => {
   return (
     <div>
-      <h1>Welcome to My Todo web app</h1>
+     <HomePage />
     </div>
   );
 };
